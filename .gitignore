@@ -132,6 +132,5 @@ dmypy.json
 .pyre/
 
 enter to postgres.txt
-settings.py
 
 migrations
