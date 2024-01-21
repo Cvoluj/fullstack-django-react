@@ -6,6 +6,7 @@ from rest_framework import viewsets
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from core.auth.serializers import LoginSerializer
 
+
 class RefreshViewSet(viewsets.ViewSet, TokenRefreshView):
     permission_classes = (AllowAny, )
     http_method_names = ['post']
