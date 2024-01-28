@@ -73,7 +73,7 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
         """
         Return True if user has liked a `post`; else False
         """
-        return self.posts_liked.first(pk=post.pk).exists()
+        return self.posts_liked.filter(pk=post.pk).exists()
 
     def __str__(self):
         return f'{self.email}'
