@@ -3,3 +3,4 @@ psycopg2-binary==2.9.9
 django-filter==23.5
 djangorestframework==3.14.0
 python-dotenv==1.0.0
+drf-nested-routers==0.93.5

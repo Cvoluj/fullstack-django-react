@@ -7,7 +7,6 @@ from core.abstract.viewsets import AbstractViewSet
 from core.post.serializers import PostSerializer
 from core.auth.permissions import UserPermission
 from core.post.models import Post
-from core.user.models import User
 
 
 class PostViewSet(AbstractViewSet):
