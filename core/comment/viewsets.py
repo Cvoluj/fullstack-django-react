@@ -2,7 +2,6 @@ from django.http.response import Http404
 
 from rest_framework.response import Response
 from rest_framework.request import Request
-from rest_framework.decorators import action
 from rest_framework import status
 
 from core.abstract.viewsets import AbstractViewSet
@@ -12,7 +11,7 @@ from core.auth.permissions import UserPermission
 
 
 class CommentViewSet(AbstractViewSet):
-    http_method_names = ['post', 'get', 'put', 'delete']
+    http_method_names = ('post', 'get', 'put', 'delete')
     permission_classes = (UserPermission, )
     serializer_class = CommentSerializer
 
@@ -23,19 +22,16 @@ class CommentViewSet(AbstractViewSet):
         post_pk = self.kwargs['post_pk']
         if post_pk is None:
             return Http404
-        queryset = Comment.objects.filter(
-            post__public_id=post_pk
-        )
+        queryset = Comment.objects.filter(post__public_id=post_pk)
 
         return queryset
 
     def get_object(self):
         obj = Comment.objects.get_object_by_public_id(self.kwargs['pk'])
-        self.check_object_permissions(self.request.obj)
+        self.check_object_permissions(self.request, obj)
 
         return obj
 
-    @action(method=['post'], detail=True)
     def create(self, request: Request, *args, **kwargs):
         serializer: CommentSerializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
